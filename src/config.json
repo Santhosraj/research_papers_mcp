@@ -1,0 +1,11 @@
+{
+    "mcpServers": {
+        "research-papers": {
+            "command": "python",
+            "args": [
+                "D:\\2025\\Study\\June\\mcp\\research_papers_mcp\\src\\server.py",
+                "D:\\2025\\Study\\June\\mcp\\research_papers_mcp\\researchpapers"
+            ]
+        }
+    }
+}

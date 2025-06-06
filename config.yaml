@@ -1,0 +1,6 @@
+github:
+  owner: "Santhosraj"
+  repo: "research_papers_mcp"
+mcp:
+  port: 8000
+  transport: "stdio"

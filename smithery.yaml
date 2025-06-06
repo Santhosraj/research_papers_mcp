@@ -1,0 +1,21 @@
+name: research-papers-mcp
+version: 1.0.0
+description: MCP server for accessing research papers in Santhosraj/research_papers
+startCommand:
+  type: streamable_http
+  commandFunction: |
+    (config) => ({
+      command: 'python',
+      args: ['src/server.py'],
+      env: {
+        GITHUB_PERSONAL_ACCESS_TOKEN: config.githubPersonalAccessToken
+      }
+    })
+configSchema:
+  type: object
+  required:
+    - githubPersonalAccessToken
+  properties:
+    githubPersonalAccessToken:
+      type: string
+      description: GitHub Personal Access Token for accessing the research_papers repository

@@ -1,0 +1,8 @@
+mcp
+PyGitHub
+PyPDF2
+pytest
+wrapt
+uvicorn
+fastapi
+pyyaml

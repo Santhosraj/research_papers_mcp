@@ -1,0 +1,5 @@
+mcp
+PyGitHub
+PyPDF2
+pytest
+wrapt
