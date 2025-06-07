@@ -39,36 +39,32 @@ The `research_papers_mcp` project is an MCP (Message Control Protocol) server th
 
 ## ⚙️ Setup Instructions
 
-### 1. Clone the Repository
 
-```bash
-git clone https://github.com/Santhosraj/research_papers_mcp.git
-cd research_papers_mcp
 ```
 Setup Instructions
 
-##1. Clone the Repository
+## 1. Clone the Repository
 
 Clone the project to your local machine:
 ```bash
 git clone https://github.com/Santhosraj/research_papers_mcp.git
 cd research_papers_mcp
 ```
-##3. Set Up a Virtual Environment
+## 3. Set Up a Virtual Environment
 Create and activate a virtual environment:
 ```bash
 python -m venv .venv
 .venv\Scripts\activate  # On Windows
 # source .venv/bin/activate  # On Unix/Linux/Mac
 ```
-##3. Install Dependencies
+## 3. Install Dependencies
 Install the required Python packages:
 ```bash
 uv pip install -r requirements.txt
 ```
 The requirements.txt includes dependencies like mcp, PyGitHub, PyPDF2, uvicorn, and fastapi.
 
-##4. Configure Claude Desktop
+## 4. Configure Claude Desktop
 Create a config.json file in the project root to configure Claude Desktop for local use:
 ```bash
 {
@@ -91,31 +87,31 @@ Create a config.json file in the project root to configure Claude Desktop for lo
 ***Replace "your_github_pat_here" with your GitHub PAT.***
 ***Adjust the command and args paths if your project directory differs.***
 
-##5. Run the Server
+## 5. Run the Server
 Start the MCP server locally:
 ```bash
 python src/server.py
 ```
-You should see:
-Server initialized
+## You should see:
+```bash Server initialized```
 
-6. Interact with the Server Using Claude Desktop
-
+## 6. Interact with the Server Using Claude Desktop
+```bash
 Launch Claude Desktop:claude-desktop --config research_papers_mcp\config.json
+```
+
+## List Tools and Prompts:/list-tools
+
+## Expected Output:Available tools:
+**- list_papers**
+**- search_papers**
+**- read_paper**
+## Available prompts:
+**- search_papers_prompt**
 
 
-##List Tools and Prompts:/list-tools
-
-##Expected Output:Available tools:
-- list_papers
-- search_papers
-- read_paper
-Available prompts:
-- search_papers_prompt
-
-
-Search for Papers:/search_papers {"keyword": "cnn"}
-
+**Search for Papers:/search_papers {"keyword": "cnn"}**
+```bash
 Expected Output (example):{
   "matches": [
     {"file": "papers/some_paper_with_cnn.pdf", "match_type": "filename"},
@@ -123,41 +119,41 @@ Expected Output (example):{
   ]
 }
 
+```
+
+## Usage Examples
+
+**List All Papers:/list_papers**
 
 
-Usage Examples
-
-List All Papers:/list_papers
+**Search for Papers with Keyword "transformer":/search_papers {"keyword": "transformer"}**
 
 
-Search for Papers with Keyword "transformer":/search_papers {"keyword": "transformer"}
-
-
-Read a Specific Paper:/read_paper {"paper_name": "some_paper.pdf"}
-
-
-
-Troubleshooting
-
-Server Fails to Start:
-Ensure all dependencies are installed: uv pip install -r requirements.txt.
-Verify your GitHub PAT has the repo scope.
-
-
-Tool Errors:
-Check the server logs for GitHub API errors (e.g., rate limits, invalid PAT).
-Ensure the papers folder exists in Santhosraj/research_papers.
-
-
-Claude Desktop Not Connecting:
-Confirm the server is running before starting Claude Desktop.
-Verify the config.json paths and url are correct.
+**Read a Specific Paper:/read_paper {"paper_name": "some_paper.pdf"}**
 
 
 
-Contributing
+## Troubleshooting
+
+**Server Fails to Start:**
+**1)Ensure all dependencies are installed: uv pip install -r requirements.txt.**
+**2)Verify your GitHub PAT has the repo scope.**
+
+
+## Tool Errors:
+**Check the server logs for GitHub API errors (e.g., rate limits, invalid PAT).**
+**Ensure the papers folder exists in Santhosraj/research_papers.**
+
+
+## Claude Desktop Not Connecting:
+**Confirm the server is running before starting Claude Desktop.**
+**Verify the config.json paths and url are correct.**
+
+
+
+### Contributing 🚀
 Feel free to fork the repository, make changes, and submit pull requests. For major changes, please open an issue first to discuss your ideas.
-License
+## License
 This project is licensed under the MIT License. See the LICENSE file for details.
-Contact
-For questions or support, reach out to Santhosraj at [santhosraj14@gmail.com].
+## Contact
+For questions or support, reach out to Santhosraj at **[santhosraj14@gmail.com]**.
