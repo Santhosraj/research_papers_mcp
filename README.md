@@ -1,17 +1,140 @@
-# Research Papers MCP Server
+Research Papers MCP Server
+Overview
+The research_papers_mcp project is an MCP (Message Control Protocol) server that provides tools to interact with research papers stored in a GitHub repository (Santhosraj/research_papers). It allows users to list, search, and read PDF papers using an MCP client like Claude Desktop. The server is built using the FastMCP framework and runs locally with stdio transport.
+Features
 
-An MCP server for accessing research papers in [Santhosraj/research_papers](https://github.com/Santhosraj/research_papers).
+List Papers: Retrieve a list of PDF files in the papers folder of the repository.
+Search Papers: Search for papers by keyword in filenames or content.
+Read Papers: Extract and read the content of a specific PDF file.
+Prompt Support: Includes a prompt (search_papers_prompt) to initiate searches.
 
-## Hosted on Smithery
-- URL: https://server.smithery.ai/@Santhosraj/research-papers-mcp/sse
-- Commands:
-  - `/list_papers`: List all PDFs
-  - `/search_papers <keyword>`: Search PDFs by keyword
-  - `/read_paper <file_name>`: Read a PDF's content
-- Config: Requires `GITHUB_PERSONAL_ACCESS_TOKEN`
+Project Structure
+research_papers_mcp/
+├── src/
+│   └── server.py           # Main server script
+├── tools/
+│   ├── list_papers.py     # Tool to list PDF files
+│   ├── search_papers.py   # Tool to search papers by keyword
+│   └── read_paper.py      # Tool to read a specific PDF
+├── prompts/
+│   └── search_prompts.py  # Prompt definition for searching papers
+├── config/
+│   └── config.json        # Claude Desktop configuration
+├── requirements.txt       # Python dependencies
+├── README.md              # Project documentation
+├── LICENSE                # License file (add your preferred license)
+└── .gitignore             # Git ignore file
 
-## Local Setup
-1. Clone: `git clone https://github.com/Santhosraj/research_papers_mcp`
-2. Install: `uv pip install -r requirements.txt`
-3. Set `GITHUB_PERSONAL_ACCESS_TOKEN` in `config/secrets.env`
-4. Run: `python src/server.py`
+Prerequisites
+
+Python 3.11: Ensure Python 3.11 is installed.
+GitHub Personal Access Token (PAT): Required to access the Santhosraj/research_papers repository. Generate a PAT with repo scope at GitHub Settings.
+Claude Desktop: An MCP client to interact with the server. Install it following its official documentation.
+
+Setup Instructions
+1. Clone the Repository
+Clone the project to your local machine:
+git clone https://github.com/Santhosraj/research_papers_mcp.git
+cd research_papers_mcp
+
+2. Set Up a Virtual Environment
+Create and activate a virtual environment:
+python -m venv .venv
+.venv\Scripts\activate  # On Windows
+# source .venv/bin/activate  # On Unix/Linux/Mac
+
+3. Install Dependencies
+Install the required Python packages:
+uv pip install -r requirements.txt
+
+The requirements.txt includes dependencies like mcp, PyGitHub, PyPDF2, uvicorn, and fastapi.
+4. Configure Claude Desktop
+Create a config.json file in the project root to configure Claude Desktop for local use:
+{
+  "mcpServers": {
+    "research-papers": {
+      "url": "stdio://local",
+      "command": "D:\\2025\\Study\\June\\mcp\\research_papers_mcp\\.venv\\Scripts\\python.exe",
+      "args": [
+        "D:\\2025\\Study\\June\\mcp\\research_papers_mcp\\src\\server.py"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "your_github_pat_here"
+      }
+    }
+  }
+}
+
+
+Replace "your_github_pat_here" with your GitHub PAT.
+Adjust the command and args paths if your project directory is different.
+
+5. Run the Server
+Start the MCP server locally:
+python src/server.py
+
+You should see:
+Server initialized
+
+6. Interact with the Server Using Claude Desktop
+
+Launch Claude Desktop:claude-desktop --config D:\2025\Study\June\mcp\research_papers_mcp\config.json
+
+
+List Tools and Prompts:/list-tools
+
+Expected output:Available tools:
+- list_papers
+- search_papers
+- read_paper
+Available prompts:
+- search_papers_prompt
+
+
+Search for Papers:/search_papers {"keyword": "cnn"}
+
+Expected output (example):{
+  "matches": [
+    {"file": "papers/some_paper_with_cnn.pdf", "match_type": "filename"},
+    {"file": "papers/another_paper.pdf", "match_type": "content"}
+  ]
+}
+
+
+
+Usage Examples
+
+List All Papers:/list_papers
+
+
+Search for Papers with Keyword "transformer":/search_papers {"keyword": "transformer"}
+
+
+Read a Specific Paper:/read_paper {"paper_name": "some_paper.pdf"}
+
+
+
+Troubleshooting
+
+Server Fails to Start:
+Ensure all dependencies are installed (uv pip install -r requirements.txt).
+Verify your GitHub PAT has the repo scope.
+
+
+Tool Errors:
+Check the server logs for GitHub API errors (e.g., rate limits, invalid PAT).
+Ensure the papers folder exists in Santhosraj/research_papers.
+
+
+Claude Desktop Not Connecting:
+Confirm the server is running before starting Claude Desktop.
+Verify the config.json paths and url are correct.
+
+
+
+Contributing
+Feel free to fork the repository, make changes, and submit pull requests. For major changes, please open an issue first to discuss your ideas.
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+Contact
+For questions or support, reach out to Santhosraj at [your-email@example.com].
