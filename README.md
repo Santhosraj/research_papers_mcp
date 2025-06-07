@@ -71,9 +71,9 @@ Create a config.json file in the project root to configure Claude Desktop for lo
   "mcpServers": {
     "research-papers": {
       "url": "stdio://local",
-      "command": "D:\\2025\\Study\\June\\mcp\\research_papers_mcp\\.venv\\Scripts\\python.exe",
+      "command": "research_papers_mcp\\.venv\\Scripts\\python.exe",
       "args": [
-        "D:\\2025\\Study\\June\\mcp\\research_papers_mcp\\src\\server.py"
+        "research_papers_mcp\\src\\server.py"
       ],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "your_github_pat_here"
