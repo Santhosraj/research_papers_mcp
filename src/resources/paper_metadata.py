@@ -4,7 +4,7 @@ import base64
 import json
 
 @resource()
-def paper_metadata(repo_owner: str, repo_name: str) -> dict:
+def paper_metadata(repo_owner: str = "Santhosraj", repo_name: str = "research_papers_mcp") -> dict:
     try:
         client = GitHubClient()
         repo = client.client.get_repo(f"{repo_owner}/{repo_name}")
@@ -12,4 +12,4 @@ def paper_metadata(repo_owner: str, repo_name: str) -> dict:
         metadata = json.loads(base64.b64decode(metadata_file.content).decode('utf-8'))
         return metadata
     except Exception as e:
-        return {"error": str(e)}
+        return {"error": "Metadata not found or invalid"}

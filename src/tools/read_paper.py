@@ -2,8 +2,7 @@ from mcp import Tool
 from github_client import GitHubClient
 from mcp.server.fastmcp import FastMCP
 from pdf_utils import extract_pdf_text
-server = FastMCP("research_papers_mcp")
-@server.tool()
+
 def read_paper(repo_owner: str, repo_name: str, file_name: str) -> dict:
     try:
         client = GitHubClient()

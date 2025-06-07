@@ -1,8 +1,8 @@
 from mcp.server.fastmcp import FastMCP
 import mcp
+from mcp.server import Server
 from github_client import GitHubClient
-server = FastMCP("research_papers_mcp")
-@server.tool()
+
 def list_papers(repo_owner: str, repo_name: str) -> dict:
     try:
         client = GitHubClient()
