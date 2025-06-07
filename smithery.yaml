@@ -8,7 +8,8 @@ startCommand:
       command: 'python',
       args: ['src/server.py'],
       env: {
-        GITHUB_PERSONAL_ACCESS_TOKEN: config.githubPersonalAccessToken
+        GITHUB_PERSONAL_ACCESS_TOKEN: config.githubPersonalAccessToken,
+        SMITHERY_DEPLOYMENT: 'true'
       }
     })
 configSchema:
