@@ -1,9 +1,10 @@
-from mcp import Tool
+from mcp.server import FastMCP
 from github_client import GitHubClient
-from mcp.server.fastmcp import FastMCP
 from pdf_utils import extract_pdf_text
-
-def read_paper(repo_owner: str, repo_name: str, file_name: str) -> dict:
+import sys
+server = FastMCP("research_papers_mcp")
+@server.tool()
+def read_paper(repo_owner: str = "Santhosraj", repo_name: str = "research_papers_mcp", file_name: str = "") -> dict:
     try:
         client = GitHubClient()
         file_path = f"papers/{file_name}"
